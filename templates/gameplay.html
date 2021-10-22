@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Ход игры
+{% endblock %}
+
+{% block content %}
+    <div class="form-group">
+        {{ form.way.label }}
+        {{ form.way }}
+    </div>
+    <div class="form-group">
+        {{ form.number_steps.label }}
+        {{ form.number_steps }}
+        {% for err in form.number_steps.errors %}
+        {{ err }}
+        {% endfor %}
+    </div>
+    {{ form.submit }}
+{% endblock %}
