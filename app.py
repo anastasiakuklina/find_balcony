@@ -28,15 +28,17 @@ def index():
     if form.validate_on_submit():
         room_id = 0
         return redirect(url_for("gameplay", room=rooms[room_id][0]))
+    flash('Вчерашний поход к барону явно удался. Сейчас вы в Подземелье и ваше самочувствие оставляет желать лучшего. ' +
+          'Глоток свежего воздуха — вот, что вам сейчас нужно. А это значит, что нужно найти балкон.')
     return render_template('index.html', form=form)
 
 class GameplayForm(FlaskForm):
     way = SelectField('Выберите сторону света, в которую желаете отправиться', coerce=int,
                       choices=[
-                          (-1, 'Запад'),
+                          (3, 'Север'),
                           (1, 'Восток'),
                           (-3, 'Юг'),
-                          (3, 'Север')
+                          (-1, 'Запад')
                       ], render_kw={'class': 'form-control'})
     number_steps = IntegerField('Сколько шагов хотите сделать? ( Не больше двух )', validators=[DataRequired(), NumberRange(min=1, max=2)],
                                 default=1,
